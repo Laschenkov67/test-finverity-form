@@ -1,27 +1,66 @@
 # TestFinverityForm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+Создать SPA используя - Angular 10+
+Сверстать пошаговую форму создания Клиента
+Дизайн и внешний вид формы вы выбираете самостоятельно.
+Можно использовать готовые библиотеки компонентов Angular.
+Форма должна быть адаптивной.
+Обратите особое внимание на UI/UX и визуальный вид формы.
+Необходимо осуществлять валидацию данных формы и выводить ошибки пользователю при их наличии. Место выведения, формат и текст вы определяете самостоятельно.
+Желательно использовать Reactive Forms.
+Каждый шаг является отдельной страницей (имеет свой роут /client-form/client, /client-form/address, /client-form/identity).
+Переход к следующему шагу может быть доступен только после успешного выполнения предыдущего (соответственно роуты /client-form/address, /client-form/identity должны быть недоступны если не выполнены условия на странице /client-form/client).
+При отсутствии ошибок на последнем шаге, необходимо показать сообщение о том, что новый клиент успешно создан.
+Далее перенаправить на страницу (/created-client) с сохраненными данными формы - созданным клиентом (Дизайн и внешний вид страницы вы выбираете самостоятельно)
 
-## Development server
+Шаг 1 - Клиент:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+        ●  Фамилия*
 
-## Code scaffolding
+        ●  Имя*
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+        ●  Отчество
 
-## Build
+        ●  Дата рождения*
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+        ●  Номер телефона* (11 цифр)
 
-## Running unit tests
+        ●  Пол
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+        ●  Группа клиентов*. (Мультиселектор).
 
-## Running end-to-end tests
+    ○ Значения: [VIP клиенты, Постоянные клиенты, Новые клиенты]
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+    ● Координатор. (Cелектор).
+    ○ Значения: [Иванов, Захаров, Чернышева]
 
-## Further help
+    ● Не отправлять СМС. (Чекбокс или Свитчер)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Шаг 2 - Адрес:
+
+    ●  Индекс
+
+    ●  Страна* (Cелектор)
+
+    ●  Область
+
+    ●  Город* (Cелектор)
+
+    ●  Улица
+
+    ●  Дом
+
+    Шаг 3 - Подтверждение личности:
+
+● Тип документа*. (Cелектор).
+○ Значения: [Паспорт, Свидетельство о рождении, Вод. удостоверение]
+
+    ●  Серия
+
+    ●  Номер*
+
+    ●  Кем выдан
+
+    ●  Дата выдачи*
+
+    ●  Файл (Загрузка файла) 
