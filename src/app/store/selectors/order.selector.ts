@@ -1,36 +1,35 @@
-import { OrderState, orderAdapter } from '../reducers/clients.reducer';
-
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { clientAdapter, ClientsState } from "../reducers/clients.reducer";
 
-const getOrderFeatureState = createFeatureSelector<OrderState>("orders");
+const getOrderFeatureState = createFeatureSelector<ClientsState>("orders");
   
-  export const getOrders = createSelector(
+  export const getClients = createSelector(
     getOrderFeatureState,
-    orderAdapter.getSelectors().selectAll
+    clientAdapter.getSelectors().selectAll
   );
   
-  export const getOrdersLoading = createSelector(
+  export const getClientsLoading = createSelector(
     getOrderFeatureState,
-    (state: OrderState) => state.loading
+    (state: ClientsState) => state.loading
   );
   
-  export const getOrdersLoaded = createSelector(
+  export const getClientsLoaded = createSelector(
     getOrderFeatureState,
-    (state: OrderState) => state.loaded
+    (state: ClientsState) => state.loaded
   );
   
   export const getError = createSelector(
     getOrderFeatureState,
-    (state: OrderState) => state.error
+    (state: ClientsState) => state.error
   );
   
-  export const getCurrentOrderId = createSelector(
+  export const getCurrentClientId = createSelector(
     getOrderFeatureState,
-    (state: OrderState) => state.selectedOrderId
+    (state: ClientsState) => state.selectedClientId
   );
 
-  export const getCurrentOrder = createSelector(
+  export const getCurrentClient = createSelector(
     getOrderFeatureState,
-    getCurrentOrderId,
-    state => state.entities[state.selectedOrderId]
+    getCurrentClientId,
+    state => state.entities[state.selectedClientId]
   );

@@ -1,6 +1,3 @@
-import { Order } from '../interfaces/clients.interface';
-import { OrderActionTypes } from '../enums/clients.enum';
-import { OrderService } from '../../services/order.service';
 import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
 import { Actions, Effect, ofType } from "@ngrx/effects";
@@ -8,45 +5,48 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Observable, of } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
 
-import * as orderActions from "../actions/clients.actions";
+import { IClients } from "../interfaces/clients.interface";
+import { ClientsActionTypes } from '../enums/clients.enum';
+import { ClientsService } from '../../services/clients.service';
+import * as clientsActions from "../actions/clients.actions";
 
 @Injectable()
 
 export class OrderEffect {
   constructor(
     private actions$: Actions,
-    private orderService: OrderService
+    private clientService: ClientsService
   ) {}
 
   @Effect()
-  loadOrders$: Observable<Action> = this.actions$.pipe(
-    ofType<orderActions.LoadOrders>(
-      OrderActionTypes.LOAD_ORDERS
+  loadClients$: Observable<Action> = this.actions$.pipe(
+    ofType<clientsActions.LoadClients>(
+      ClientsActionTypes.LOAD_CLIENTS
     ),
-    mergeMap((action: orderActions.LoadOrders) =>
-      this.orderService.getOrders().pipe(
+    mergeMap((action: clientsActions.LoadClients) =>
+      this.clientService.getClients().pipe(
         map(
-          (orders: Order[]) =>
-            new orderActions.LoadOrdersSuccess(orders)
+          (clients: IClients[]) =>
+            new clientsActions.LoadClientsSuccess(clients)
         ),
-        catchError(err => of(new orderActions.LoadOrdersFail(err)))
+        catchError(err => of(new clientsActions.LoadClientsFail(err)))
       )
     )
   );
 
   @Effect()
-  createOrder$: Observable<Action> = this.actions$.pipe(
-    ofType<orderActions.CreateOrder>(
-      OrderActionTypes.CREATE_ORDER
+  createClient$: Observable<Action> = this.actions$.pipe(
+    ofType<clientsActions.CreateClient>(
+      ClientsActionTypes.CREATE_CLIENT
     ),
-    map((action: orderActions.CreateOrder) => action.payload),
-    mergeMap((order: Order) =>
-      this.orderService.createOrder(order).pipe(
+    map((action: clientsActions.CreateClient) => action.payload),
+    mergeMap((client: IClients) =>
+      this.clientService.createClient(client).pipe(
         map(
-          (newOrder: Order) =>
-            new orderActions.CreateOrderSuccess(newOrder)
+          (newClient: IClients) =>
+            new clientsActions.CreateClientSuccess(newClient)
         ),
-        catchError(err => of(new orderActions.CreateOrderFail(err)))
+        catchError(err => of(new clientsActions.CreateClientFail(err)))
       )
     )
   );

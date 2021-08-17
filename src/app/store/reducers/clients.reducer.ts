@@ -1,46 +1,48 @@
-import { OrderActionTypes } from '../enums/clients.enum';
-import { Order } from '../interfaces/clients.interface';
-import * as orderActions from "../actions/clients.actions";
 import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
+
+import { IClients } from './../interfaces/clients.interface';
+import { ClientsActionTypes } from '../enums/clients.enum';
+
+import * as clientsActions from "../actions/clients.actions";
 import * as fromRoot from "../state/app-state";
 
-export interface OrderState extends EntityState<Order> {
-  selectedOrderId: number | null;
+export interface ClientsState extends EntityState<IClients> {
+  selectedClientId: number | null;
   loading: boolean;
   loaded: boolean;
   error: string;
 }
 
 export interface AppState extends fromRoot.AppState {
-  orders: OrderState;
+  clients: ClientsState;
 }
 
-export const orderAdapter: EntityAdapter<Order> = createEntityAdapter<Order>();
+export const clientAdapter: EntityAdapter<IClients> = createEntityAdapter<IClients>();
 
-export const defaultOrder: OrderState = {
+export const defaultClient: ClientsState = {
   ids: [],
   entities: {},
-  selectedOrderId: null,
+  selectedClientId: null,
   loading: false,
   loaded: false,
   error: ""
 };
 
-export const initialState = orderAdapter.getInitialState(defaultOrder);
+export const initialState = clientAdapter.getInitialState(defaultClient);
 
-export function orderReducer(
+export function clientsReducer(
   state = initialState,
-  action: orderActions.Action
-): OrderState {
+  action: clientsActions.clientsActions
+): ClientsState {
   switch (action.type) {
-    case OrderActionTypes.LOAD_ORDERS_SUCCESS: {
-      return orderAdapter.addAll(action.payload, {
+    case ClientsActionTypes.LOAD_CLIENTS_SUCCESS: {
+      return clientAdapter.addAll(action.payload, {
         ...state,
         loading: false,
         loaded: true
       });
     }
-    case OrderActionTypes.LOAD_ORDERS_FAIL: {
+    case ClientsActionTypes.LOAD_CLIENTS_FAIL: {
       return {
         ...state,
         entities: {},
@@ -50,10 +52,10 @@ export function orderReducer(
       };
     }
 
-    case OrderActionTypes.CREATE_ORDER_SUCCESS: {
-      return orderAdapter.addOne(action.payload, state);
+    case ClientsActionTypes.CREATE_CLIENT_SUCCESS: {
+      return clientAdapter.addOne(action.payload, state);
     }
-    case OrderActionTypes.CREATE_ORDER_FAIL: {
+    case ClientsActionTypes.CREATE_CLIENT_FAIL: {
       return {
         ...state,
         error: action.payload

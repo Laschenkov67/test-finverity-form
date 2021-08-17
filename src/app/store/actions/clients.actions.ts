@@ -1,46 +1,47 @@
 import { Action } from '@ngrx/store';
-import { Order } from '../interfaces/clients.interface';
-import { OrderActionTypes } from '../enums/clients.enum';
+
+import { IClients } from './../interfaces/clients.interface';
+import { ClientsActionTypes } from '../enums/clients.enum';
 
 
-export class LoadOrders implements Action {
-  readonly type = OrderActionTypes.LOAD_ORDERS;
+export class LoadClients implements Action {
+  readonly type = ClientsActionTypes.LOAD_CLIENTS;
 }
 
-export class LoadOrdersSuccess implements Action {
-  readonly type = OrderActionTypes.LOAD_ORDERS_SUCCESS;
+export class LoadClientsSuccess implements Action {
+  readonly type = ClientsActionTypes.LOAD_CLIENTS_SUCCESS;
 
-  constructor(public payload: Order[]) {}
+  constructor(public payload: IClients[]) {}
 }
 
-export class LoadOrdersFail implements Action {
-  readonly type = OrderActionTypes.LOAD_ORDERS_FAIL;
+export class LoadClientsFail implements Action {
+  readonly type = ClientsActionTypes.LOAD_CLIENTS_FAIL;
 
   constructor(public payload: string) {}
 }
 
-export class CreateOrder implements Action {
-  readonly type = OrderActionTypes.CREATE_ORDER;
+export class CreateClient implements Action {
+  readonly type = ClientsActionTypes.CREATE_CLIENT;
 
-  constructor(public payload: Order) {}
+  constructor(public payload: IClients) {}
 }
 
-export class CreateOrderSuccess implements Action {
-  readonly type = OrderActionTypes.CREATE_ORDER_SUCCESS;
+export class CreateClientSuccess implements Action {
+  readonly type = ClientsActionTypes.CREATE_CLIENT_SUCCESS;
 
-  constructor(public payload: Order) {}
+  constructor(public payload: IClients) {}
 }
 
-export class CreateOrderFail implements Action {
-  readonly type = OrderActionTypes.CREATE_ORDER_FAIL;
+export class CreateClientFail implements Action {
+  readonly type = ClientsActionTypes.CREATE_CLIENT_FAIL;
 
   constructor(public payload: string) {}
 }
 
-export type Action =
-  | LoadOrders
-  | LoadOrdersSuccess
-  | LoadOrdersFail
-  | CreateOrder
-  | CreateOrderSuccess
-  | CreateOrderFail
+export type clientsActions =
+  | LoadClients
+  | LoadClientsSuccess
+  | LoadClientsFail
+  | CreateClient
+  | CreateClientSuccess
+  | CreateClientFail;
