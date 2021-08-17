@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/scss/variable.scss';
 @import './assets/scss/header.scss';
 @import './assets/scss/status-block.scss';
 @import './assets/scss/form.scss';
 @import './assets/scss/checkbox.scss';
 @import './assets/scss/input.scss';
 @import './assets/scss/jquery-ui.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'playRegular', "Arial";
+    &:hover, &:focus{
+      outline: none;
+    }
+  }

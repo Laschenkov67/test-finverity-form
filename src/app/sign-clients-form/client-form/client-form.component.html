@@ -1,28 +1,93 @@
 <h1 class="main__title title">Личные сведения</h1>
-<form class="main__form form">
+<form 
+    class="main__form form"
+    [formGroup]="formOrder" 
+    (ngSubmit)="createOrder()"
+>
+    <!-- Фамилия -->
     <div class="form__field-wrap">
         <div class="form-control form-control--filled form-control--success">
             <p class="form-control__info">Фамилия</p>
-            <input id="lastname" name="lastname" type="text" class="form-control__field">
+            <input 
+                id="lastname" 
+                formControlName="surname" 
+                type="text" class="form-control__field"
+                [ngClass]="{'is-invalid': formOrder.get('surname').invalid && formOrder.get('surname').touched}"
+            >
             <label for="lastname" class="form-control__placeholder">Фамилия</label>
         </div>
-        <div class="form__checkbox-wrap"></div>
+        <span class="text-danger" *ngIf="formOrder.get('surname').invalid && formOrder.get('surname').touched">
+            <span *ngIf="formOrder.get('surname').errors['required']">Поле фамилия не должно быть пустым</span>
+            <span
+                *ngIf="formOrder.get('surname').errors['minlength'] && formOrder.get('surname').errors['minlength']['requiredLength']">
+                Фамилия должна быть больше {{formOrder.get('surname').errors['minlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('surname').errors['minlength']['actualLength']}}
+            </span>
+            <span
+                *ngIf="formOrder.get('surname').errors['maxlength'] && formOrder.get('surname').errors['maxlength']['requiredLength']">
+                Фамилия не должна быть больше {{formOrder.get('surname').errors['maxlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('surname').errors['maxlength']['actualLength']}}
+            </span>
+        </span>
     </div>
+
+    <!-- Имя -->
     <div class="form__field-wrap ">
         <div class="form-control form-control--filled form-control--success">
             <p class="form-control__info">Имя</p>
-            <input id="firstname" name="firstname" type="text" class="form-control__field">
-            <label for="firstname" class="form-control__placeholder">Имя</label>
+            <input 
+                id="name" 
+                formControlName="name" 
+                type="text" 
+                class="form-control__field"
+                [ngClass]="{'is-invalid': formOrder.get('name').invalid && formOrder.get('name').touched}"
+            >
+            <label for="name" class="form-control__placeholder">Имя</label>
         </div>
-        <div class="form__checkbox-wrap"></div>
+        <span class="text-danger" *ngIf="formOrder.get('name').invalid && formOrder.get('name').touched">
+            <span *ngIf="formOrder.get('name').errors['required']">Поле имя не должно быть пустым</span>
+            <span
+                *ngIf="formOrder.get('name').errors['minlength'] && formOrder.get('name').errors['minlength']['requiredLength']">
+                Имя должнo быть больше {{formOrder.get('name').errors['minlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('name').errors['minlength']['actualLength']}}
+            </span>
+            <span 
+                *ngIf="formOrder.get('name').errors['maxlength'] && formOrder.get('name').errors['maxlength']['requiredLength']">
+                Имя не должнo быть больше {{formOrder.get('name').errors['maxlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('name').errors['maxlength']['actualLength']}}
+            </span>
+        </span>
     </div>
+
+    <!-- Отчество -->
     <div class="form__field-wrap">
         <div class="form-control form-control--filled form-control--success">
             <p class="form-control__info">Отчество</p>
-            <input id="secondname" name="secondname" type="text" class="form-control__field">
+            <input 
+                id="secondname" 
+                name="secondname" 
+                type="text" 
+                class="form-control__field"
+                [ngClass]="{'is-invalid': formOrder.get('secondname').invalid && formOrder.get('secondname').touched}"
+            >
             <label for="secondname" class="form-control__placeholder">Отчество</label>
         </div>
+        <span class="text-danger" *ngIf="formOrder.get('secondname').invalid && formOrder.get('name').touched">
+            <span *ngIf="formOrder.get('secondname').errors['required']">Поле имя не должно быть пустым</span>
+            <span
+                *ngIf="formOrder.get('secondname').errors['minlength'] && formOrder.get('name').errors['minlength']['requiredLength']">
+                Имя должнo быть больше {{formOrder.get('name').errors['minlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('secondname').errors['minlength']['actualLength']}}
+            </span>
+            <span 
+                *ngIf="formOrder.get('secondname').errors['maxlength'] && formOrder.get('name').errors['maxlength']['requiredLength']">
+                Имя не должнo быть больше {{formOrder.get('name').errors['maxlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('secondname').errors['maxlength']['actualLength']}}
+            </span>
+        </span>
     </div>
+
+    <!-- Дата рождения -->
     <div class="form__field-wrap">
         <div class="form-control form-control--filled form-control--success">
             <p class="form-control__info">Дата рождения</p>
@@ -31,10 +96,9 @@
         </div>
     </div>
 
+    <!-- Пол -->
     <div class="form__field-wrap">
         <div class="form-control form-control--filled form-control--success">
-            <p class="form-control__info">Чтобы изменить сведения, позвоните в наш контакт-центр на номер +7
-                (727) 355 24 24</p>
             <select id="sex" name="sex" class="form-control__field form-control__field--select">
                 <option value="" selected=""></option>
                 <option value="0">Женский</option>
@@ -44,6 +108,31 @@
         </div>
     </div>
 
+    <!--Группа клиентов -->
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <select id="sex" name="sex" class="form-control__field form-control__field--select">
+                <option value="" selected=""></option>
+                <option value="0">Женский</option>
+                <option value="1">Мужской</option>
+            </select>
+        <label for="sex" class="form-control__placeholder">Группа клиентов</label>
+      </div>
+    </div>
+
+    <!--Координатор -->
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <select id="sex" name="sex" class="form-control__field form-control__field--select">
+                <option value="" selected=""></option>
+                <option value="0">Женский</option>
+                <option value="1">Мужской</option>
+            </select>
+        <label for="sex" class="form-control__placeholder">Координатор</label>
+      </div>
+    </div>
+
+   <!--Не отправлять СМС -->
     <div class="form__checkbox-wrap">
         <label class="checkbox">
             <input name="empty_secondname" id="empty_secondname" type="checkbox" class="checkbox__input">
@@ -52,5 +141,9 @@
             </span>
             <span class="checkbox__text">Не отправлять СМС</span>
         </label>
+    </div>
+
+    <div>
+        <button>Далее</button>
     </div>
 </form>

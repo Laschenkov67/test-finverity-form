@@ -8,8 +8,8 @@ import { ConfirmationFormComponent } from './sign-clients-form/confirmation-form
 
 const routes: Routes = [
   { path: "", component: ClientFormComponent },
-  {path: 'client-form/client', component: ClientFormComponent, pathMatch: 'full'},
-  {path: 'client-form/address', component: AdressFormComponent},
+  { path: 'client-form/client', component: ClientFormComponent, pathMatch: 'full'},
+  { path: 'client-form/address', component: AdressFormComponent},
   { path: 'client-form/identity',component: ConfirmationFormComponent},
   { path: 'created-client', component: CreatedClientsComponent},
 ];
