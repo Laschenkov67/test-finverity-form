@@ -1,1 +1,56 @@
-<p>client-form works!</p>
+<h1 class="main__title title">Личные сведения</h1>
+<form class="main__form form">
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <p class="form-control__info">Фамилия</p>
+            <input id="lastname" name="lastname" type="text" class="form-control__field">
+            <label for="lastname" class="form-control__placeholder">Фамилия</label>
+        </div>
+        <div class="form__checkbox-wrap"></div>
+    </div>
+    <div class="form__field-wrap ">
+        <div class="form-control form-control--filled form-control--success">
+            <p class="form-control__info">Имя</p>
+            <input id="firstname" name="firstname" type="text" class="form-control__field">
+            <label for="firstname" class="form-control__placeholder">Имя</label>
+        </div>
+        <div class="form__checkbox-wrap"></div>
+    </div>
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <p class="form-control__info">Отчество</p>
+            <input id="secondname" name="secondname" type="text" class="form-control__field">
+            <label for="secondname" class="form-control__placeholder">Отчество</label>
+        </div>
+    </div>
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <p class="form-control__info">Дата рождения</p>
+            <input id="b_date" name="b_date" type="text" class="form-control__field hasDatepicker">
+            <label for="b_date" class="form-control__placeholder">Дата рождения</label>
+        </div>
+    </div>
+
+    <div class="form__field-wrap">
+        <div class="form-control form-control--filled form-control--success">
+            <p class="form-control__info">Чтобы изменить сведения, позвоните в наш контакт-центр на номер +7
+                (727) 355 24 24</p>
+            <select id="sex" name="sex" class="form-control__field form-control__field--select">
+                <option value="" selected=""></option>
+                <option value="0">Женский</option>
+                <option value="1">Мужской</option>
+            </select>
+            <label for="sex" class="form-control__placeholder">Пол</label>
+        </div>
+    </div>
+
+    <div class="form__checkbox-wrap">
+        <label class="checkbox">
+            <input name="empty_secondname" id="empty_secondname" type="checkbox" class="checkbox__input">
+            <span class="checkbox__visual">
+                <span class="checkbox__inset-cube"></span>
+            </span>
+            <span class="checkbox__text">Не отправлять СМС</span>
+        </label>
+    </div>
+</form>

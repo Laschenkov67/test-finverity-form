@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "PlayRegular";
+  src: url("/assets/fonts/IBMPlexSans-ExtraLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "PlayBold";
+  src: url("/assets/fonts/IBMPlexSans-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "OpenSansRegular";
+  src: url("/assets/fonts/IBMPlexSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "OpenSansLight";
+  src: url("/assets/fonts/IBMPlexSans-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "OpenSansLight";
+  src: url("/assets/fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  src: url("/assets/fonts/IBMPlexSans-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+$playRegular: "PlayRegular", sans-serif;
+$playBold: "PlayBold", sans-serif;
+
+$openSansRegular: "OpenSansRegular";
+$openSansLight: "OpenSansLight";
+$openSansBold: "OpenSansBold";
+
+
+$success: #009efa;
+$error: #e63b12;
+$alert: #ff7321;
+
+$light-gray:#a1a1a1;
+$medium-gray: #7c7c84;
+$dark-gray: #677080;
